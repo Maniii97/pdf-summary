@@ -3,7 +3,6 @@ import axios from "axios";
 
 interface ServerResponse {
   text: string;
-  // Add other fields based on the expected response from the backend
 }
 
 const UploadPDF: React.FC = () => {
@@ -32,8 +31,8 @@ const UploadPDF: React.FC = () => {
     setError(null);
 
     try {
-      const res = await axios.post<ServerResponse>(
-        "https://1846-2401-4900-3b3b-54f0-78d8-f3e1-2d5e-f844.ngrok-free.app/pdf",
+      const response = await axios.post<ServerResponse>(
+        "https://adapted-concrete-shiner.ngrok-free.app/pdf",
         formData,
         {
           headers: {
@@ -42,7 +41,7 @@ const UploadPDF: React.FC = () => {
         }
       );
 
-      setResponse(res.data);
+      setResponse(response.data);
     } catch (err) {
       setError("An error occurred while uploading the file.");
       console.error(err);
@@ -63,7 +62,7 @@ const UploadPDF: React.FC = () => {
         // Replace * text with <li>text</li> for bullet points
         .replace(/^\* (.*)$/gm, "<li>$1</li>")
         // Replace `text` with <em>text</em> for italics
-        .replace(/`(.+?)`/g, "<em>$1</em>") 
+        .replace(/`(.+?)`/g, "<em>$1</em>")
         // Replace regular newlines with <br />
         .replace(/\n/g, "<br />"),
     };
@@ -75,7 +74,9 @@ const UploadPDF: React.FC = () => {
         style={{
           textAlign: "center",
         }}
-      > Summarize PDFs
+      >
+        {" "}
+        Summarize PDFs
       </h1>
       <form
         style={{
@@ -103,19 +104,27 @@ const UploadPDF: React.FC = () => {
           Loading...
         </p>
       )}
-      {error && <p style={{ color: "red" , fontSize : "20px" }}>{error}</p>}
+      {error && (
+        <div>
+          <p style={{ color: "red", fontSize: "17px", textAlign: "center" }}>
+            {error}
+          </p>
+          <p style={{ color: "red", fontSize: "17px", textAlign: "center" }}>
+            Please try again
+          </p>
+        </div>
+      )}
       {response && (
         <div>
           <p
-            className="res"
+            className="response"
             dangerouslySetInnerHTML={
               renderFormattedText() as { __html: string }
             }
           />
         </div>
       )}
-      <div className="footer">Made with ❤️ and ☕ by
-      ‎ Mani</div>
+      <div className="footer">Made with ❤️ and ☕ by ‎ Mani</div>
     </div>
   );
 };

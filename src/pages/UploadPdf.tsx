@@ -86,6 +86,7 @@ const UploadPDF: React.FC = () => {
       >
         <input
           style={{
+            padding: "10px",
             textAlign: "center",
           }}
           type="file"
@@ -127,7 +128,7 @@ const UploadPDF: React.FC = () => {
           />
         </div>
       )}
-      <div className="footer">Made with ❤️ and ☕ by ‎ Mani</div>
+      <div className="footer">Made with ❤️ and ☕ by <a style={{textDecoration : "underline"}} href="https://www.github.com/Maniii97/"> Mani</a></div>
     </div>
   );
 };

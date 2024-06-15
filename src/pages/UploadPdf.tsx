@@ -85,6 +85,9 @@ const UploadPDF: React.FC = () => {
         onSubmit={handleSubmit}
       >
         <input
+          style={{
+            textAlign: "center",
+          }}
           type="file"
           name="pdf"
           accept="application/pdf"
